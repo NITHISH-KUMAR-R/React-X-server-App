@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css'; // Import the custom CSS
 import { baseurl } from "../url";
+import axiosInstance from "../axiosConfig";
 
 axios.defaults.withCredentials=true; // Ensure cookies are sent with each request
 
@@ -25,7 +26,7 @@ const Login=() => {
 
     const handleLogin=async () => {
         try {
-            const response=await axios.post( `${ baseurl }/user/login`, {
+            const response=await axiosInstance.post( `${ baseurl }/user/login`, {
                 email: formData.email,
                 password: formData.password
             } );
@@ -50,7 +51,7 @@ const Login=() => {
 
     const handleSignup=async () => {
         try {
-            const response=await axios.post( `${ baseurl }/reg/newUserReg`, {
+            const response=await axiosInstance.post( `${ baseurl }/reg/newUserReg`, {
                 name: formData.username,
                 email: formData.email,
                 password: formData.password

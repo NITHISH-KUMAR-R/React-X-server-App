@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Friend.css';
 import { baseurl } from '../url';
+import axiosInstance from '../axiosConfig';
 
 const FriendComponent=() => {
     const [allUsers, setAllUsers]=useState( [] );
@@ -9,7 +10,7 @@ const FriendComponent=() => {
     useEffect( () => {
         const fetchAllUsers=async () => {
             try {
-                const response=await axios.get( `${ baseurl }user/all`, { withCredentials: true } );
+                const response=await axiosInstance.get( `${ baseurl }user/all`, { withCredentials: true } );
                 setAllUsers( response.data );
             } catch ( error ) {
                 console.error( 'Error fetching users:', error );

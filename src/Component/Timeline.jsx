@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import './Timeline.css';
-import axios from 'axios';
+import axiosInstance from 'axios';
 import Navbar from './Navbar';
 import { baseurl } from '../url';
 axios.defaults.withCredentials=true;
@@ -13,7 +13,7 @@ const Timeline=() => {
     useEffect( () => {
         const fetchPosts=async () => {
             try {
-                const response=await axios.get( `${ baseurl }/msg/allUserspost`, {
+                const response=await axiosInstance.get( `${ baseurl }/msg/allUserspost`, {
                     withCredentials: true
                 } );
                 setPosts( response.data );

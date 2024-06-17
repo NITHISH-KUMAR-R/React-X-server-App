@@ -4,6 +4,7 @@ import './Friend.css';
 import Friend2 from './Friend2';
 import Navbar from './Navbar';
 import { baseurl } from '../url';
+import axiosInstance from '../axiosConfig';
 
 const FriendComponent=() => {
     const [session, setSession]=useState( null ); // Use null for initial state
@@ -15,7 +16,7 @@ const FriendComponent=() => {
     useEffect( () => {
         const fetchLoginUserId=async () => {
             try {
-                const response=await axios.get( `${ baseurl }/user/session`, {
+                const response=await axiosInstance.get( `${ baseurl }/user/session`, {
                     withCredentials: true // Include credentials in the request
                 } );
                 const data=response.data;
@@ -32,7 +33,7 @@ const FriendComponent=() => {
     useEffect( () => {
         const fetchAllUsers=async () => {
             try {
-                const response=await axios.get( `${ baseurl }/friend/unkownuser`, {
+                const response=await axiosInstance.get( `${ baseurl }/friend/unkownuser`, {
                     withCredentials: true // Include credentials in the request
                 } );
                 const allUserData=response.data;
@@ -52,7 +53,7 @@ const FriendComponent=() => {
         const fetchReceivedRequests=async () => {
             try {
                 if ( session ) {
-                    const response=await axios.get( `${ baseurl }/friend/recievedReq`, {
+                    const response=await axiosInstance.get( `${ baseurl }/friend/recievedReq`, {
                         withCredentials: true
                     } );
                     const requests=response.data;
@@ -75,7 +76,7 @@ const FriendComponent=() => {
     const sendFriendRequest=async ( userId ) => {
         try {
             if ( session ) {
-                const response=await axios.post( `${ baseurl }/friend/req/${ userId }`, {}, {
+                const response=await axiosInstance.post( `${ baseurl }/friend/req/${ userId }`, {}, {
                     withCredentials: true // Include credentials in the request
                 } );
                 console.log( 'Friend request sent:', response.data );
@@ -93,7 +94,7 @@ const FriendComponent=() => {
 
     const acceptFriendRequest=async ( requestId ) => {
         try {
-            const response=await axios.post( `${ baseurl }/friend/pending/${ requestId }`, {}, {
+            const response=await axiosInstance.post( `${ baseurl }/friend/pending/${ requestId }`, {}, {
                 withCredentials: true
             } );
             console.log( 'Friend request accepted:', response.data );

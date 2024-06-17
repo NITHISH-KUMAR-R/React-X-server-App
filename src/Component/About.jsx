@@ -4,6 +4,7 @@ import './Timeline.css';
 import axios from 'axios';
 import Navbar from './Navbar';
 import { baseurl } from '../url';
+import axiosInstance from '../axiosConfig';
 
 const About=() => {
     const [posts, setPosts]=useState( [] );
@@ -11,7 +12,7 @@ const About=() => {
     useEffect( () => {
         const fetchUserPost=async () => {
             try {
-                const response=await axios.get( `${ baseurl }/msg/all`, {
+                const response=await axiosInstance.get( `${ baseurl }/msg/all`, {
                     withCredentials: true
                 } );
                 console.log( response );

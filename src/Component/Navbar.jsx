@@ -4,11 +4,12 @@ import './navbar.css'; // Import custom CSS for styling
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { baseurl } from '../url';
+import axiosInstance from '../axiosConfig';
 
 const Navbar=() => {
     const handleLogout=async () => {
         try {
-            await axios.post( `${ baseurl }/user/logout`, {
+            await axiosInstance.post( `${ baseurl }/user/logout`, {
                 withCredentials: true // Send cookies with the request
             } );
             localStorage.removeItem( 'user' ); // Remove user session data
