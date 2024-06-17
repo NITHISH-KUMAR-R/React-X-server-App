@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import './Friend.css';
 import Friend2 from './Friend2';
 import Navbar from './Navbar';

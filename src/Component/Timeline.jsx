@@ -2,9 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import './Timeline.css';
-import axiosInstance from 'axios';
+import axios from 'axios';
 import Navbar from './Navbar';
 import { baseurl } from '../url';
+import axiosInstance from '../axiosConfig';
+
 axios.defaults.withCredentials=true;
 
 const Timeline=() => {

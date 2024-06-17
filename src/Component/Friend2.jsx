@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './Friend2.css'
 import { baseurl } from '../url';
-import axiosInstance from '../axiosConfig';
 
 
 const Friend2=() => {
@@ -12,7 +11,7 @@ const Friend2=() => {
     useEffect( () => {
         const fetchFriends=async () => {
             try {
-                const response=await axiosInstance.get( `${ baseurl }/friend/all` )
+                const response=await axios.get( `${ baseurl }/friend/all` )
                 const friends=response.data;
                 console.log( friends )
                 setAllFriends( friends )

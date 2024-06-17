@@ -2,7 +2,7 @@
 import React from 'react';
 import './navbar.css'; // Import custom CSS for styling
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
 import { baseurl } from '../url';
 import axiosInstance from '../axiosConfig';
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import './Timeline.css';
-import axios from 'axios';
 import Navbar from './Navbar';
 import { baseurl } from '../url';
 import axiosInstance from '../axiosConfig';
