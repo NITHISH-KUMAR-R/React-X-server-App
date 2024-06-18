@@ -35,8 +35,9 @@ const Homepage=() => {
     return (
         <>
             <div className='Homecontainer'>
+                <Navbar />
                 <div className='home-container'>
-                    <Navbar />
+
                     <h1>Share your thoughts</h1>
                     <form onSubmit={handleSubmit}>
                         <textarea

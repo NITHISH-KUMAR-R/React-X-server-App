@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import './Friend.css';
 import Friend2 from './Friend2';
 import Navbar from './Navbar';
@@ -17,7 +16,7 @@ const FriendComponent=() => {
         const fetchLoginUserId=async () => {
             try {
                 const response=await axiosInstance.get( `${ baseurl }/user/session`, {
-                    withCredentials: true // Include credentials in the request
+                    withCredentials: true, // Include credentials in the request
                 } );
                 const data=response.data;
                 console.log( data );
@@ -34,7 +33,7 @@ const FriendComponent=() => {
         const fetchAllUsers=async () => {
             try {
                 const response=await axiosInstance.get( `${ baseurl }/friend/unkownuser`, {
-                    withCredentials: true // Include credentials in the request
+                    withCredentials: true, // Include credentials in the request
                 } );
                 const allUserData=response.data;
                 console.log( allUserData );
@@ -54,7 +53,7 @@ const FriendComponent=() => {
             try {
                 if ( session ) {
                     const response=await axiosInstance.get( `${ baseurl }/friend/recievedReq`, {
-                        withCredentials: true
+                        withCredentials: true,
                     } );
                     const requests=response.data;
                     console.log( 'Received Requests:', requests );
@@ -76,14 +75,17 @@ const FriendComponent=() => {
     const sendFriendRequest=async ( userId ) => {
         try {
             if ( session ) {
-                const response=await axiosInstance.post( `${ baseurl }/friend/req/${ userId }`, {}, {
-                    withCredentials: true // Include credentials in the request
-                } );
+                const response=await axiosInstance.post(
+                    `${ baseurl }/friend/req/${ userId }`,
+                    {},
+                    {
+                        withCredentials: true, // Include credentials in the request
+                    }
+                );
                 console.log( 'Friend request sent:', response.data );
 
                 // Update sentRequests state immediately after sending request
-                setSentRequests( prev => new Set( prev ).add( userId ) );
-
+                setSentRequests( ( prev ) => new Set( prev ).add( userId ) );
             } else {
                 console.error( 'User session not found' );
             }
@@ -94,13 +96,19 @@ const FriendComponent=() => {
 
     const acceptFriendRequest=async ( requestId ) => {
         try {
-            const response=await axiosInstance.post( `${ baseurl }/friend/pending/${ requestId }`, {}, {
-                withCredentials: true
-            } );
+            const response=await axiosInstance.post(
+                `${ baseurl }/friend/pending/${ requestId }`,
+                {},
+                {
+                    withCredentials: true,
+                }
+            );
             console.log( 'Friend request accepted:', response.data );
             // Remove the accepted request from the receivedRequests state
-            setReceivedRequests( prev => prev.filter( request => request._id!==requestId ) );
-            window.location.reload()
+            setReceivedRequests( ( prev ) =>
+                prev.filter( ( request ) => request._id!==requestId )
+            );
+            window.location.reload();
         } catch ( error ) {
             console.error( 'Error accepting friend request:', error );
         }
@@ -114,17 +122,16 @@ const FriendComponent=() => {
         }
     }, [] );
 
-    if ( loading ) {
-        return <p>Loading...</p>;
-    }
-
+    const capitalizeFirstLetter=( string ) => {
+        return string.charAt( 0 ).toUpperCase()+string.slice( 1 );
+    };
     return (
-        <div className='card-container'>
+        <div className="card-container">
             <Navbar />
             <div className="friend-container">
-
-
-                {session? (
+                {loading? (
+                    <div className="spinner"></div>
+                ):session? (
                     <div className="welcome-message">
                         <Friend2 />
                     </div>
@@ -134,9 +141,9 @@ const FriendComponent=() => {
                 <div className="all-users">
                     <h2>All Users</h2>
                     <ul>
-                        {allUsers.map( user => (
+                        {allUsers.map( ( user ) => (
                             <li key={user._id}>
-                                {user.name} ({user.email})
+                                {capitalizeFirstLetter( user.username )}
                                 <button
                                     className="send-request-btn"
                                     onClick={() => sendFriendRequest( user._id )}
@@ -151,9 +158,11 @@ const FriendComponent=() => {
                 <div className="received-requests">
                     <h2>Received Friend Requests</h2>
                     <ul>
-                        {receivedRequests.map( request => (
+                        {receivedRequests.map( ( request ) => (
                             <li key={request._id}>
-                                <span className="request-from">Request from: {request.senderName} ({request.senderEmail})</span>
+                                <span className="request-from">
+                                    Request from: {request.senderName} ({request.senderEmail})
+                                </span>
                                 <button
                                     className="accept-request-btn"
                                     onClick={() => acceptFriendRequest( request._id )}

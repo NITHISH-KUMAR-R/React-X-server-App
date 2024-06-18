@@ -1,4 +1,3 @@
-/* src/Component/Card.css */
 .card {
   width: 450px; /* Fixed width */
   border: 1px solid #ccc;
@@ -78,4 +77,12 @@
 
 .dislike-button:hover {
   background-color: #e53935; /* Darker red */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .card {
+    width: 100%; /* Full width on smaller screens */
+    max-width: 100%; /* Ensure it doesn't exceed viewport width */
+  }
 }

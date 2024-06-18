@@ -1,34 +1,94 @@
-.user-friends {
+.friend-list {
+  width: 100%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  position: relative; /* Required for background animation */
+  overflow: hidden; /* Ensure the background animation stays within bounds */
 }
 
-.user-friends h1 {
+.friend-list::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    #f7d06c,
+    #fe9051,
+    #ff4971,
+    #ff4971,
+    #fe9051,
+    #f7d06c
+  );
+  top: -100%;
+  left: -100%;
+  z-index: -1;
+  animation: gradientBackground 15s ease infinite;
+}
+
+@keyframes gradientBackground {
+  0% {
+    transform: translate(-30%, -30%);
+  }
+  50% {
+    transform: translate(30%, 30%);
+  }
+  100% {
+    transform: translate(-30%, -30%);
+  }
+}
+
+.friend-list h2 {
   text-align: center;
   color: #333;
-  margin-bottom: 20px;
 }
 
-.friends {
+.friend-list ul {
   list-style-type: none;
   padding: 0;
 }
 
-.friends li {
+.friend-item {
+  position: relative;
   padding: 10px;
-  border-bottom: 1px solid #eee;
+  margin: 10px 0; /* Increased margin for better separation */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #333;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  animation: bounceIn 1s ease; /* Bounce-in animation */
 }
 
-.friends li:last-child {
-  border-bottom: none;
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-/* Add hover effect for list items */
-.friends li:hover {
-  background-color: #f5f5f5;
+.friend-item:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-3px); /* Move the item up slightly on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow on hover */
+}
+
+.friend-item span {
+  font-size: 1.5em; /* Increase emoji size */
+  margin-left: 10px; /* Add space between name and emoji */
 }

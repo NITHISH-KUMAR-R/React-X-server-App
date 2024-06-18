@@ -1,58 +1,118 @@
 .friend-container {
+  width: 90%;
   max-width: 800px;
-  margin: 0 auto;
+  background-color: #ffffff;
   padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.welcome-message {
+/* Spinner Styles */
+.spinner {
+  margin: 0 auto; /* Center the spinner horizontally */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #007bff; /* Color of the spinner */
+  animation: spin 1s infinite linear; /* Animation properties */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg); /* Rotate the spinner 360 degrees */
+  }
+}
+
+/* Navbar Styles */
+/* .navbar {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
   margin-bottom: 20px;
 }
 
-.all-users {
-  margin-bottom: 40px;
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
 }
 
-.all-users ul {
-  list-style-type: none;
-  padding: 0;
+.navbar a:hover {
+  text-decoration: underline;
+} */
+
+/* Welcome Message Styles */
+.welcome-message {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.all-users li {
+/* All Users List Styles */
+.all-users,
+.received-requests {
+  margin-bottom: 20px;
+}
+
+.all-users h2,
+.received-requests h2 {
+  text-align: center;
+  color: #333;
   margin-bottom: 10px;
 }
 
-.send-request-btn {
-  background-color: #4caf50;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.send-request-btn:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
+.all-users ul,
 .received-requests ul {
   list-style-type: none;
   padding: 0;
 }
 
+.all-users li,
 .received-requests li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   margin-bottom: 10px;
+  transition: background-color 0.3s;
 }
 
+.all-users li:hover,
+.received-requests li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Button Styles */
+.send-request-btn,
 .accept-request-btn {
-  background-color: #007bff;
-  color: white;
   padding: 5px 10px;
   border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: white;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
+.send-request-btn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.send-request-btn:hover:not(:disabled),
 .accept-request-btn:hover {
   background-color: #0056b3;
+}
+
+/* Request From Text */
+.request-from {
+  margin-right: 10px;
 }
