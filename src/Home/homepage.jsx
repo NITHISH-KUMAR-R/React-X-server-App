@@ -10,10 +10,12 @@ const Homepage=() => {
     const handleSubmit=useCallback( async ( event ) => {
         event.preventDefault();
         try {
+            const token=localStorage.getItem( 'user' )? JSON.parse( localStorage.getItem( 'user' ) ).token:'';
             const response=await fetch( `${ baseurl }/msg/post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${ token }` // Include the token in the Authorization header
                 },
                 body: JSON.stringify( { postMessage } ),
                 credentials: 'include', // Include credentials with each request
