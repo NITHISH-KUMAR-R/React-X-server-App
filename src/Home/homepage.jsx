@@ -50,7 +50,7 @@ const Homepage=() => {
                         <button type='submit'>Post</button>
                     </form>
                     {successMessage&&(
-                        <p className='success-messages'>{successMessage}</p>
+                        <p className='success-messagess'>{successMessage}</p>
                     )}
                 </div>
             </div>
