@@ -86,7 +86,7 @@ const FriendComponent=() => {
                             {receivedRequests.map( ( request ) => (
                                 <li key={request._id}>
                                     <span className="request-from">
-                                        Request from: {capitalizeFirstLetter( request.senderName )}
+                                        {capitalizeFirstLetter( request.senderName )}
                                     </span>
                                     <button
                                         className="accept-request-btn"

@@ -11,13 +11,13 @@ const FriendsNavbar=() => {
 
                     <ul className="list">
                         <li className="userFriends">
-                            <Link to="/friends/myfriends">My Friends</Link>
+                            <Link to="/friends/myfriends">Friends</Link>
                         </li>
                         <li className="userFriends">
-                            <Link to="/friends/allusers">All Users</Link>
+                            <Link to="/friends/allusers">Users</Link>
                         </li>
                         <li className="userFriends">
-                            <Link to="/friends/receivedrequests">Received Requests</Link>
+                            <Link to="/friends/receivedrequests">Requests</Link>
                         </li>
                     </ul>
 
