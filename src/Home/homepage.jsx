@@ -5,7 +5,7 @@ import { baseurl } from '../url';
 
 const Homepage=() => {
     const [postMessage, setPostMessage]=useState( '' );
-    const [responseMessage, setResponseMessage]=useState( '' );
+    const [successMessage, setSuccessMessage]=useState( '' );
 
     const handleSubmit=useCallback( async ( event ) => {
         event.preventDefault();
@@ -22,13 +22,15 @@ const Homepage=() => {
             } );
             const data=await response.text();
             if ( response.ok ) {
-                setResponseMessage( data );
+                setSuccessMessage( 'Thought posted successfully!' );
                 setPostMessage( '' ); // Clear the input field on successful post
             } else {
-                setResponseMessage( 'Error: '+data );
+                setSuccessMessage( '' );
+                console.error( 'Error:', data );
             }
         } catch ( error ) {
-            setResponseMessage( 'Error: '+error.message );
+            console.error( 'Error:', error.message );
+            setSuccessMessage( '' );
         }
     }, [postMessage] );
 
@@ -37,7 +39,6 @@ const Homepage=() => {
             <div className='Homecontainer'>
                 <Navbar />
                 <div className='home-container'>
-
                     <h1>Share your thoughts</h1>
                     <form onSubmit={handleSubmit}>
                         <textarea
@@ -48,7 +49,9 @@ const Homepage=() => {
                         />
                         <button type='submit'>Post</button>
                     </form>
-                    {responseMessage&&<p>{responseMessage}</p>}
+                    {successMessage&&(
+                        <p className='success-messages'>{successMessage}</p>
+                    )}
                 </div>
             </div>
         </>
