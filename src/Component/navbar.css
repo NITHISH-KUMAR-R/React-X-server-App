@@ -4,7 +4,7 @@
   background-color: #333;
   padding: 10px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -20,9 +20,14 @@
   padding: 0;
 }
 
+.nav-list li a:hover {
+  text-decoration: none;
+}
+
 /* Navbar List Item */
 .nav-item {
   margin: 0 10px;
+  list-style-type: none;
 }
 
 .nav-item a,
@@ -41,6 +46,7 @@
 .nav-item a:hover,
 .nav-item button:hover {
   background-color: #555;
+  text-decoration: none; /* Ensure no underline on hover */
 }
 
 /* Logout Button Specific Styles */
@@ -50,13 +56,71 @@
 
 .nav-item button:hover {
   background-color: #cc0000;
+  text-decoration: none; /* Ensure no underline on hover */
 }
 
-/* Media Queries */
+/* Hamburger Menu Icon */
+.nav-toggle {
+  display: none; /* Hide by default */
+  cursor: pointer;
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: 0.5s ease-in-out;
+}
+
+.burger .line {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+.nav-list.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 10;
+}
+
+.nav-list.open li {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #666;
+}
+
+.nav-list.open li:last-child {
+  border-bottom: none;
+}
+
+.nav-list.open li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
 @media (max-width: 768px) {
   .nav-list {
-    flex-direction: column;
-    align-items: center;
+    display: none;
+  }
+
+  .nav-toggle {
+    display: none; /* Show hamburger menu icon */
+  }
+
+  .nav-list.open {
+    display: flex;
   }
 
   .nav-item {
@@ -69,9 +133,34 @@
   }
 }
 
+.nav-logo img {
+  width: 40px; /* Adjust width to your preference */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.nav-logoo img {
+  width: 30px; /* Adjust width to your preference */
+  height: auto; /* Maintain aspect ratio */
+}
+
 @media (max-width: 480px) {
+  .navbar ul {
+    padding: 5px;
+    display: none;
+  }
   .navbar {
-    padding: 10px;
+    display: flex;
+  }
+
+  .nav-header {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex; /* Show hamburger menu icon */
+    margin-left: 350px;
+    justify-content: center;
+    align-items: center;
   }
 
   .nav-item a,

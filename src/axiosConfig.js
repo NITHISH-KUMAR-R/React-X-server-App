@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
     response => response,
     error => {
-        if ( error.response.status===401||400 ) {
+        if ( error.response.status===401 ) {
             localStorage.removeItem( 'user' );
             console.log( 'getting 401' )
             window.location.href='/login';

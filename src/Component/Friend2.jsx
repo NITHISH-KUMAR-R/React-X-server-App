@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import './Friend2.css';
+import './Friend.css'
 import { baseurl } from '../url';
 import axiosInstance from '../axiosConfig';
+import Navbar from './Navbar';
+import FriendsNavbar from './FriendsNavbar';
+import Loading from './Loading';
 
 const Friend2=() => {
     const [friendList, setFriendList]=useState( [] );
     const [error, setError]=useState( '' );
+    const [loading, setLoading]=useState( true )
 
     useEffect( () => {
         const fetchFriends=async () => {
             try {
                 const response=await axiosInstance.get( `${ baseurl }/friend/all` );
                 setFriendList( response.data );
+                setLoading( false )
             } catch ( error ) {
                 console.error( 'Error fetching friends:', error );
                 setError( 'Error fetching friends. Please try again.' );
@@ -30,17 +36,26 @@ const Friend2=() => {
     }
 
     return (
-        <div className="friend-list">
-            <h2>My Friends</h2>
-            <ul>
-                {friendList.map( ( friend ) => (
-                    <li key={friend._id} className="friend-item">
-                        {capitalizeFirstLetter( friend.fName )}
-                        <span role="img" aria-label="Love">💌</span>
-                    </li>
-                ) )}
-            </ul>
+        <div>
+            <Navbar />
+            <FriendsNavbar />
+            <div className="friend-list">
+
+                <h2>My Friends</h2>
+                {loading? <Loading />:
+
+                    <ul>
+                        {friendList.map( ( friend ) => (
+                            <li key={friend._id} className="friend-item">
+                                {capitalizeFirstLetter( friend.fName )}
+                                <span role="img" aria-label="Love">💌</span>
+                            </li>
+                        ) )}
+                    </ul>
+                }
+            </div>
         </div>
+
     );
 };
 

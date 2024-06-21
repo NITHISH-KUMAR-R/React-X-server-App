@@ -6,12 +6,14 @@ import axiosInstance from '../axiosConfig';
 
 const FriendComponent=() => {
     const [allUsers, setAllUsers]=useState( [] );
+    const [loading, setLoading]=useState( true );
 
     useEffect( () => {
         const fetchAllUsers=async () => {
             try {
                 const response=await axiosInstance.get( `${ baseurl }user/all`, { withCredentials: true } );
                 setAllUsers( response.data );
+                setLoading( false )
             } catch ( error ) {
                 console.error( 'Error fetching users:', error );
             }
@@ -23,6 +25,7 @@ const FriendComponent=() => {
     return (
         <div className="friend-container">
             <h1>All Users</h1>
+
             <div className="user-list">
                 {allUsers.map( ( user ) => (
                     <div key={user._id} className="user-card">

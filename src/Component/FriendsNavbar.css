@@ -1,0 +1,52 @@
+/* Friend3.css */
+
+/* Styling for the top container */
+.top-container {
+  background-color: #333; /* Dark background for the navbar */
+  padding: 10px; /* Padding for spacing */
+  display: flex; /* Display items in a row */
+  justify-content: center; /* Center the content horizontally */
+}
+
+/* Styling for the overall navbar */
+.friendNavbar {
+  display: flex; /* Display items in a row */
+  justify-content: center; /* Center the content horizontally */
+  width: 100%; /* Take full width of the container */
+}
+
+/* Styling for the navigation list */
+.nav-list {
+  list-style-type: none; /* Remove default list style */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Display items in a row */
+  align-items: center; /* Align items vertically in the center */
+}
+
+/* Styling for the nested list */
+.list {
+  display: flex; /* Display items in a row */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  list-style-type: none; /* Remove bullets */
+}
+
+/* Styling for individual list items */
+.userFriends {
+  margin-right: 10px;
+}
+
+/* Styling for the links */
+.userFriends a {
+  color: white; /* White text color */
+  text-decoration: none; /* Remove underline from links */
+  padding: 10px 15px; /* Padding for link area */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for links */
+.userFriends a:hover {
+  background-color: #555; /* Darker background on hover */
+  border-radius: 5px; /* Rounded corners on hover */
+}
