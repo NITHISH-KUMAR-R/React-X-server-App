@@ -18,7 +18,7 @@ const About=() => {
                 const response=await axiosInstance.get( `${ baseurl }/msg/all`, {
                     withCredentials: true // Ensure credentials are included
                 } );
-                console.log( response );
+
                 setUsername( response.data.username )
 
                 // Check if messagesList exists in response.data and is an array

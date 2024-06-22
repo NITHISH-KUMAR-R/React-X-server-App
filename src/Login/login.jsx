@@ -30,7 +30,7 @@ const Login=() => {
                 email: formData.email,
                 password: formData.password
             } );
-            console.log( "Login successful:", response.data ); // Logged in successfully
+
             localStorage.setItem( 'user', JSON.stringify( response.data ) );
             // Set the success message
             setSuccessMessage( 'Login successful! Redirecting to homepage...' );
@@ -56,7 +56,7 @@ const Login=() => {
                 email: formData.email,
                 password: formData.password
             } );
-            console.log( "Signup successful:", response.data ); // Signed up successfully
+
             setSuccessMessage( 'Signup successful! Redirecting to login page...' );
             // Clear any previous error message
             setErrorMessage( '' );

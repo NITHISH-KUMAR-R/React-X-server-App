@@ -16,7 +16,7 @@ const FriendComponent=() => {
                 const response=await axiosInstance.get( `${ baseurl }/friend/unkownuser`, {
                     withCredentials: true, // Include credentials in the request
                 } );
-                console.log( response.data );
+
                 setLoading( false );
             } catch ( error ) {
                 console.error( 'Error fetching all users:', error );
@@ -34,7 +34,7 @@ const FriendComponent=() => {
                     withCredentials: true,
                 } );
                 const requests=response.data;
-                console.log( 'Received Requests:', requests );
+
 
                 // Update received requests state
                 setReceivedRequests( requests );
@@ -55,7 +55,7 @@ const FriendComponent=() => {
                     withCredentials: true,
                 }
             );
-            console.log( 'Friend request accepted:', response.data );
+
 
             // Remove the accepted request from the receivedRequests state
             setReceivedRequests( ( prev ) =>
