@@ -1,4 +1,4 @@
-export const baseurl='http://localhost:5000/api'
+export const baseurl='https://backend-deployment-2-31hq.onrender.com/api'
 //https://backend-deployment-2-31hq.onrender.com/api -- current backend api
 //https://backend-deployment-1-tqk1.onrender.com
 
