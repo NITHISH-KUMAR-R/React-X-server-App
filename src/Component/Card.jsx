@@ -2,7 +2,16 @@
 import React from 'react';
 import './Card.css'; // Ensure to create this CSS file for styling
 
-const Card=( { username, userPost, likes, disLikes, date } ) => {
+const Card=( { username, userPost, likes, disLikes, date, onLike, onDislike } ) => {
+    const handleLike=() => {
+        console.log( 'Like button clicked' );
+        onLike();
+    };
+
+    const handleDislike=() => {
+        console.log( 'Dislike button clicked' );
+        onDislike();
+    };
     return (
         <div className="card">
             <div className="card-header">
@@ -13,8 +22,8 @@ const Card=( { username, userPost, likes, disLikes, date } ) => {
                 <p>{userPost}</p>
             </div>
             <div className="card-actions">
-                <button className="like-button">Like {likes}</button>
-                <button className="dislike-button">Dislike {disLikes}</button>
+                <button className="like-button" onClick={onLike}>Like {likes}</button>
+                <button className="dislike-button" onClick={onDislike}>Dislike {disLikes}</button>
             </div>
         </div>
     );
