@@ -3,15 +3,7 @@ import React from 'react';
 import './Card.css'; // Ensure to create this CSS file for styling
 
 const Card=( { username, userPost, likes, disLikes, date, onLike, onDislike } ) => {
-    const handleLike=() => {
-        console.log( 'Like button clicked' );
-        onLike();
-    };
 
-    const handleDislike=() => {
-        console.log( 'Dislike button clicked' );
-        onDislike();
-    };
     return (
         <div className="card">
             <div className="card-header">

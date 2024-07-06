@@ -19,7 +19,7 @@ const FriendPosts=() => {
                 const response=await axiosInstance.get( `${ baseurl }/msg/displayFrndPost`, {
                     withCredentials: true
                 } );
-                console.log( response.data );
+
                 setFriendPosts( response.data.friendPosts||[] );
                 setLoading( false );
             } catch ( error ) {
@@ -34,7 +34,7 @@ const FriendPosts=() => {
     const likePost=async ( postId ) => {
         try {
             const response=await axiosInstance.post( `${ baseurl }/heart/likes/${ postId }` );
-            console.log( `Liked post with ID: ${ postId }`, response );
+
 
             if ( response.status===200 ) {
                 const updatedPost=response.data.post;
@@ -57,7 +57,7 @@ const FriendPosts=() => {
     const dislikePost=async ( postId ) => {
         try {
             const response=await axiosInstance.post( `${ baseurl }/heart/dislike/${ postId }` );
-            console.log( `Disliked post with ID: ${ postId }`, response );
+
 
             if ( response.status===200 ) {
                 const updatedPost=response.data.post;

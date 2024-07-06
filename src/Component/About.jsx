@@ -38,7 +38,7 @@ const About=() => {
     const likePost=async ( postId ) => {
         try {
             const response=await axiosInstance.post( `${ baseurl }/heart/likes/${ postId }` );
-            console.log( `Liked post with ID: ${ postId }`, response );
+
 
             if ( response.status===200 ) {
                 const updatedPost=response.data.post;
@@ -58,7 +58,6 @@ const About=() => {
     const dislikePost=async ( postId ) => {
         try {
             const response=await axiosInstance.post( `${ baseurl }/heart/dislike/${ postId }` );
-            console.log( `Disliked post with ID: ${ postId }`, response );
 
             if ( response.status===200 ) {
                 const updatedPost=response.data.post;
