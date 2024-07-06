@@ -32,25 +32,26 @@ const Login=() => {
             } );
 
             localStorage.setItem( 'user', JSON.stringify( response.data ) );
-            // Set the success message
             setSuccessMessage( 'Login successful! Redirecting to homepage...' );
-            // Clear any previous error message
             setErrorMessage( '' );
             setTimeout( () => {
-                // Redirect to homepage
                 navigate( '/homepage' );
             }, 2000 ); // Delay for 2 seconds before redirecting
         } catch ( error ) {
             console.error( "Login error:", error );
-            // Update error message state
             setErrorMessage( 'Login unsuccessful. Please check your email and password.' );
-            // Clear the success message
             setSuccessMessage( '' );
         }
     };
 
     const handleSignup=async () => {
         try {
+            console.log( "Sending signup data:", {
+                name: formData.username,
+                email: formData.email,
+                password: formData.password
+            } );
+
             const response=await axiosInstance.post( `${ baseurl }/reg/newUserReg`, {
                 name: formData.username,
                 email: formData.email,
@@ -58,18 +59,25 @@ const Login=() => {
             } );
 
             setSuccessMessage( 'Signup successful! Redirecting to login page...' );
-            // Clear any previous error message
             setErrorMessage( '' );
             setTimeout( () => {
-                // Refresh the page and navigate to the login page
-                window.location.reload(); // Refresh the page
+                window.location.reload();
                 navigate( '/login' );
-            }, 2000 ); // Delay for 2 seconds before redirecting
+            }, 2000 );
         } catch ( error ) {
             console.error( "Signup error:", error );
-            // Update error message state
-            setErrorMessage( 'Signup unsuccessful. Please try again.' );
-            // Clear the success message
+            if ( error.response&&error.response.status===409 ) {
+                // Check the specific error message from the backend
+                if ( error.response.data.message==='Email already in use' ) {
+                    setErrorMessage( 'Email already in use. Please use a different email.' );
+                } else if ( error.response.data.message==='Username already in use' ) {
+                    setErrorMessage( 'Username already in use. Please use a different username.' );
+                } else {
+                    setErrorMessage( 'Signup unsuccessful. Please try again.' );
+                }
+            } else {
+                setErrorMessage( 'Signup unsuccessful. Please try again.' );
+            }
             setSuccessMessage( '' );
         }
     };
